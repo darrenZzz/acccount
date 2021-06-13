@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">账簿</string>
+    <string name="balance">余额</string>
+    <string name="income">收入</string>
+    <string name="outgo">支出</string>
+    <string name="add">记一笔</string>
+    <string name="username">用户名</string>
+    <string name="userpwd">密码</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+</resources>

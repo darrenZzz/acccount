@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">accountBook</string>
+    <string name="balance">balance</string>
+    <string name="balanceValue" translatable="false">10000</string>
+    <string name="income">income</string>
+    <string name="incomeValue" translatable="false">0</string>
+    <string name="outgoValue" translatable="false">0</string>
+    <string name="outgo">outgo</string>
+    <string name="add">add</string>
+    <string name="username">username</string>
+    <string name="userpwd">password</string>
+    <string name="login">login</string>
+    <string name="register">register</string>
+    <string name="inButton">income</string>
+    <string name="outButton">outgo</string>
+    <string name="input">input RMB</string>
+    <string name="submit">submit</string>
+    <string name="remark">remarks</string>
+</resources>
