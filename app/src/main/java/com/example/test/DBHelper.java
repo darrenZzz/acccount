@@ -8,23 +8,32 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 
 
 public class DBHelper extends SQLiteOpenHelper {
+
+    private static final int VERSION = 1;
+    private static final String DB_NAME = "myaccountbook.db";
+    public static final String TB_NAME = "account_tb";
+
     public DBHelper(Context context, String name, CursorFactory factory,
                     int version) {
-        super(context, "myAccountBook", factory, 1);
+        super(context, name, factory, version);
+    }
+    public DBHelper(Context context){
+        super(context,DB_NAME,null,VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table if not exists user_tb(id integer primary key autoincrement," +
-                "userName text not null," +
-                "pwd text not null)");
-        db.execSQL("create table if not exists account_tb(id integer primary key autoincrement," +
-                "userName text not null," +
-                "pwd text not null)");
+        //账簿表数据
+        db.execSQL("create table "+TB_NAME+"(id integer primary key autoincrement," +
+                "type text not null," +
+                "value real not null," +
+                "remarks text)");
+        //为账簿表添加初始数据
+        db.execSQL("insert into "+TB_NAME+"(type,value,remarks) values('income',10000.0,'初始资金')");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        // TODO Auto-generated method stub
     }
 }

@@ -7,13 +7,11 @@
     <string name="outgoValue" translatable="false">0</string>
     <string name="outgo">outgo</string>
     <string name="add">add</string>
-    <string name="username">username</string>
-    <string name="userpwd">password</string>
-    <string name="login">login</string>
-    <string name="register">register</string>
     <string name="inButton">income</string>
     <string name="outButton">outgo</string>
     <string name="input">input RMB</string>
     <string name="submit">submit</string>
     <string name="remark">remarks</string>
+    <string name="itemTitle" translatable="false">itemtitle</string>
+    <string name="itemDetail" translatable="false">itemDetail</string>
 </resources>
