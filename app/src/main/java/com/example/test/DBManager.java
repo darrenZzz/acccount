@@ -91,17 +91,39 @@ public class DBManager {
 
     public AccountItem findById(int id){
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.query(TBNAME, null, "ID=?", new String[]{String.valueOf(id)}, null, null, null);
+        Cursor cursor = db.query(TBNAME, null, "id=?", new String[]{String.valueOf(id)}, null, null, null);
         AccountItem rateItem = null;
         if(cursor!=null && cursor.moveToFirst()){
             AccountItem item = new AccountItem();
-            item.setId(cursor.getInt(cursor.getColumnIndex("ID")));
-            item.setType(cursor.getString(cursor.getColumnIndex("TYPE")));
-            item.setValue(cursor.getDouble(cursor.getColumnIndex("VALUE")));
-            item.setRemarks(cursor.getString(cursor.getColumnIndex("REMARKS")));
+            item.setId(cursor.getInt(cursor.getColumnIndex("id")));
+            item.setType(cursor.getString(cursor.getColumnIndex("type")));
+            item.setValue(cursor.getDouble(cursor.getColumnIndex("value")));
+            item.setRemarks(cursor.getString(cursor.getColumnIndex("remarks")));
             cursor.close();
         }
         db.close();
         return rateItem;
+    }
+
+    public List<AccountItem> findAllByType(String type){
+        List<AccountItem> accountList = null;
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.query(TBNAME, null, "type=?", new String[]{type}, null, null, null);
+        AccountItem rateItem = null;
+        if(cursor!=null){
+            accountList = new ArrayList<AccountItem>();
+            while(cursor.moveToNext()) {
+                AccountItem item = new AccountItem();
+                item.setId(cursor.getInt(cursor.getColumnIndex("id")));
+                item.setType(cursor.getString(cursor.getColumnIndex("type")));
+                item.setValue(cursor.getDouble(cursor.getColumnIndex("value")));
+                item.setRemarks(cursor.getString(cursor.getColumnIndex("remarks")));
+
+                accountList.add(item);
+            }
+            cursor.close();
+        }
+        db.close();
+        return accountList;
     }
 }

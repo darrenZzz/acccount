@@ -29,7 +29,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "value real not null," +
                 "remarks text)");
         //为账簿表添加初始数据
-        db.execSQL("insert into "+TB_NAME+"(type,value,remarks) values('income',10000.0,'初始资金')");
+        db.execSQL("insert into "+TB_NAME+"(type,value,remarks) values('initial value',10000.0,'初始资金')");
     }
 
     @Override

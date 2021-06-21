@@ -25,6 +25,7 @@
         android:layout_height="wrap_content">
 
         <RadioButton
+            android:id="@+id/inButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -64,5 +65,6 @@
         android:background="@drawable/button_shape"
         android:gravity="center"
         android:text="@string/submit"
-        app:backgroundTint="@android:color/holo_blue_light" />
+        app:backgroundTint="@android:color/holo_blue_light"
+        android:onClick="submit" />
 </LinearLayout>
