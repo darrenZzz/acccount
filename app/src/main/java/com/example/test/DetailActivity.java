@@ -49,9 +49,9 @@ public class DetailActivity extends AppCompatActivity {
 
 
         //将数据放入控件
-        value.setText("value: "+item.getValue());
-        type.setText("type: "+item.getType());
-        remarks.setText("remarks: "+item.getRemarks());
+        value.setText("金额: "+item.getValue());
+        type.setText("类型: "+item.getType());
+        remarks.setText("备注: "+item.getRemarks());
 
 
     }

@@ -105,12 +105,16 @@ public class MainActivity extends AppCompatActivity implements Runnable, Adapter
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item){
         if (item.getItemId()==R.id.refresh){
-            finish();
-            Intent hello = new Intent(this,MainActivity.class);
-            startActivity(hello);
+            refresh();
         }
         return super.onOptionsItemSelected(item);
 
+    }
+
+    public void refresh(){
+        finish();
+        Intent hello = new Intent(this,MainActivity.class);
+        startActivity(hello);
     }
 
 
@@ -164,8 +168,11 @@ public class MainActivity extends AppCompatActivity implements Runnable, Adapter
                     public void onClick(DialogInterface dialog, int which) {
                         Log.i(TAG, "onClick: 对话框事件处理");
                         //删除操作
+                        HashMap<String,String> map = (HashMap<String, String>) listView.getItemAtPosition(position);
+                        idValue = Integer.parseInt(map.get("id"));
                         dbManager.delete(idValue);
                         Log.i(TAG, "onClick: "+idValue);
+                        refresh();
                     }
                 }).setNegativeButton("否",null);
         builder.create().show();
