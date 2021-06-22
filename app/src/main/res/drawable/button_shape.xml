@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    //参考自csdn文章"Android开发button按钮的形状设置"
+    //链接:https://blog.csdn.net/u014453443/article/details/106092358?utm_medium=distribute.pc_relevant.none-task-blog-baidujs_utm_term-0
     <item android:state_pressed="false">
         <shape android:shape="rectangle">
             <!--设置背景颜色-->
@@ -38,4 +41,6 @@
         </shape>
     </item>
 </selector>
+
+
 

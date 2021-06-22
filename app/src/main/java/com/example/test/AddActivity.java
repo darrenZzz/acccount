@@ -51,6 +51,8 @@ public class AddActivity extends AppCompatActivity{
         }else{
             value = Double.valueOf(str).doubleValue();
             //获取单选按钮中的值
+            //参考自csdn文章"android studio 如何实现RadioBotton和RadioGroup来实现单选按钮的选择"
+            //链接：https://blog.csdn.net/qq_34110501/article/details/70476830
             if (inRB.isChecked()){
                 type = "income";
             }
