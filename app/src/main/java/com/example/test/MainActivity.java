@@ -70,12 +70,18 @@ public class MainActivity extends AppCompatActivity implements Runnable, Adapter
         income = findViewById(R.id.incomeValue);
         outgo = findViewById(R.id.outgoValue);
 
-        for (AccountItem item : dbManager.findAllByType("income")) {
-            inValue = inValue + item.getValue();
+        if(dbManager.findAllByType("income") != null){
+            for (AccountItem item : dbManager.findAllByType("income")) {
+                inValue = inValue + item.getValue();
+            }
         }
-        for (AccountItem item : dbManager.findAllByType("outgo")) {
-            outValue = outValue + item.getValue();
+
+        if(dbManager.findAllByType("outgo") != null){
+            for (AccountItem item : dbManager.findAllByType("outgo")) {
+                outValue = outValue + item.getValue();
+            }
         }
+
         income.setText(String.valueOf(inValue));
         outgo.setText(String.valueOf(outValue));
         bValue = bValue + inValue - outValue;
