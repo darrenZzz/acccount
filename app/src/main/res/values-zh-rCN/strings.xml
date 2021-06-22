@@ -10,4 +10,9 @@
     <string name="input">请输入</string>
     <string name="submit">提交</string>
     <string name="remark">备注</string>
+    <string name="value">金额：</string>
+    <string name="type">类型：</string>
+    <string name="remarks">备注：</string>
+    <string name="return_btn">返回</string>
+    <string name="refresh">刷新</string>
 </resources>

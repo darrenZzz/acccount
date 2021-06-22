@@ -12,6 +12,11 @@
     <string name="input">input RMB</string>
     <string name="submit">submit</string>
     <string name="remark">remarks</string>
+    <string name="value">value: </string>
+    <string name="type">type: </string>
+    <string name="remarks">remarks: </string>
+    <string name="return_btn">return</string>
     <string name="itemTitle" translatable="false">itemtitle</string>
     <string name="itemDetail" translatable="false">itemDetail</string>
+    <string name="refresh">refresh</string>
 </resources>

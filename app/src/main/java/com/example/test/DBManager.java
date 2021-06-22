@@ -92,9 +92,9 @@ public class DBManager {
     public AccountItem findById(int id){
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.query(TBNAME, null, "id=?", new String[]{String.valueOf(id)}, null, null, null);
-        AccountItem rateItem = null;
+        AccountItem item = null;
         if(cursor!=null && cursor.moveToFirst()){
-            AccountItem item = new AccountItem();
+            item = new AccountItem();
             item.setId(cursor.getInt(cursor.getColumnIndex("id")));
             item.setType(cursor.getString(cursor.getColumnIndex("type")));
             item.setValue(cursor.getDouble(cursor.getColumnIndex("value")));
@@ -102,7 +102,7 @@ public class DBManager {
             cursor.close();
         }
         db.close();
-        return rateItem;
+        return item;
     }
 
     public List<AccountItem> findAllByType(String type){

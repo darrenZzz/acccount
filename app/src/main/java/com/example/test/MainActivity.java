@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -25,7 +27,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements Runnable, AdapterView.OnItemLongClickListener {
+public class MainActivity extends AppCompatActivity implements Runnable, AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
 
     private static final String TAG = "MainActivity";
     private ArrayList<HashMap<String,String>> listItems;
@@ -35,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements Runnable, Adapter
     TextView balance;
     TextView income;
     TextView outgo;
+    ListView listView;
+    int idValue;
     double bValue = 10000, inValue = 0, outValue = 0;
     DBManager dbManager = new DBManager(MainActivity.this);
 
@@ -43,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements Runnable, Adapter
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ListView listView = findViewById(R.id.mylist);
+        listView = findViewById(R.id.mylist);
 
         Thread t = new Thread(this);
         t.start();
@@ -59,6 +63,8 @@ public class MainActivity extends AppCompatActivity implements Runnable, Adapter
                 super.handleMessage(msg);
             }
         };
+        listView.setOnItemClickListener(this);
+        listView.setOnItemLongClickListener(this);
 
         balance = findViewById(R.id.balanceValue);
         income = findViewById(R.id.incomeValue);
@@ -84,6 +90,23 @@ public class MainActivity extends AppCompatActivity implements Runnable, Adapter
         finish();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.mymenu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item){
+        if (item.getItemId()==R.id.refresh){
+            finish();
+            Intent hello = new Intent(this,MainActivity.class);
+            startActivity(hello);
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
+
 
     @Override
     public void run() {
@@ -92,6 +115,7 @@ public class MainActivity extends AppCompatActivity implements Runnable, Adapter
         for(AccountItem accountItem : dbManager.listAll()){
             Log.i(TAG, "onCreate: "+accountItem.getType());
             HashMap<String,String> map = new HashMap<String, String>();
+            map.put("id", String.valueOf(accountItem.getId()));
             map.put("ItemTitle", accountItem.getType());//标题文字
             map.put("ItemDetail", "¥"+accountItem.getValue());//详情描述
             ret.add(map);
@@ -99,6 +123,27 @@ public class MainActivity extends AppCompatActivity implements Runnable, Adapter
         Message msg = handler.obtainMessage(8);
         msg.obj = ret;
         handler.sendMessage(msg);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        //从ListView中获取选中数据
+        HashMap<String,String> map = (HashMap<String, String>) listView.getItemAtPosition(position);
+        idValue = Integer.parseInt(map.get("id"));
+        Log.i(TAG, "onItemClick: " + idValue);
+
+        //打开DetailActivity
+        Log.i("open", "openRateActivity2: ");
+        Intent hello = new Intent(this, DetailActivity.class);
+        //加入传递的参数
+        hello.putExtra("idValue",idValue);
+
+
+        startActivity(hello);
+
+
+
     }
 
     @Override
@@ -113,8 +158,8 @@ public class MainActivity extends AppCompatActivity implements Runnable, Adapter
                     public void onClick(DialogInterface dialog, int which) {
                         Log.i(TAG, "onClick: 对话框事件处理");
                         //删除操作
-                        dbManager.delete(position+1);
-                        Log.i(TAG, "onClick: "+position);
+                        dbManager.delete(idValue);
+                        Log.i(TAG, "onClick: "+idValue);
                     }
                 }).setNegativeButton("否",null);
         builder.create().show();
